@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+#
+#  2016_python.py
+#  
+#  Student Dmitry Makarov <vensder@gmail.com>
 
 '''
 3.1. Сделать измененную версию задания №2 (п.4 и п.5) - 

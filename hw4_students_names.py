@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-
+#
+#  2016_python.py
+#  
+#  Student Dmitry Makarov <vensder@gmail.com>
 
 #4
 
