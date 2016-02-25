@@ -9,7 +9,6 @@
 
 #4.1. задание по студентам - через lambda
 
-
 students = ['Иванов Иван',
             'Иванов Станислав',
             'Петров Иван',
@@ -33,9 +32,6 @@ l_names_r = lambda lst: [ lst[i]  for i in range(len(lst)) if 'р' in lst[i] ]
 students_names_r = l_names_r(students_names)
 
 # Количество студентов с буквой "р" в имени - это длина полученного списка:
+print('Количество студентов с буквой "р" в имени:')
 print(len(students_names_r))
 
-
-
-
-#4.2. задание по БД - через def
