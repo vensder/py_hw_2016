@@ -19,17 +19,20 @@ students = [
 for i in range(len(students)):
     students[i] = students[i].split(' ')
 
+# Первый способ - записываем каждую фамилию в файл с Именем студента в названии
 # Create/truncate file with name 'group_Name'
 for i in range(len(students)):
     f = open('group_' + students[i][1],'w')
     f.close()
 
+# Добавляем в файл group_Name Фамилию
 # Append Surname to file 'group_Name'
 for i in range(len(students)):
     f = open('group_' + students[i][1],'a')
     f.write(students[i][0] + '\n')
     f.close()
 
+# Второй способ - список из имен с вложенными списками фамилий после имен.
 list0 = []
 # get list with uniq names, insert empty list after each name
 for i in range(len(students)):
