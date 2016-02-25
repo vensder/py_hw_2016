@@ -49,8 +49,7 @@ def interact():
         print('Слова', eng_word, 'нет в словаре')
 
     print("Хотите узнать перевод другого слова?")
-    answer = choice()
-    if answer == "yes":
+    if choice() == "yes":
         interact()
     else:
         print("Bye")
