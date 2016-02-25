@@ -5,6 +5,8 @@
 #  
 #  Student Dmitry Makarov <vensder@gmail.com>
 
+from time import sleep
+
 '''
 2. Сохранить объект в файл можно так:
     »> import pickle
@@ -28,6 +30,9 @@
 
     3.* Реализовать поиск/фильтрацию в базе данных - то есть вывод по условию.
 '''
+# Горизонтальная линия
+hor = lambda i: '-' * i
+
 data = {
         'кот': {'ловит мышей','умеет мяукать'},
         'кит': {'живет в океане','ест планктон'},
@@ -62,6 +67,7 @@ for i in data.keys():
 print('?')
 print('Введите кого-нибудь:')
 data_object = input()
+sleep(1)
 
 # Выдача информации об объекте по ключу
 if data_object in data.keys():
@@ -69,27 +75,31 @@ if data_object in data.keys():
     print(data.get(data_object))
 else:
     print('про ' + data_object + ' ничего не знаем')
+sleep(1)
+print(hor(24))
 
 # Поиск по значению
-
 print('\nЗнаете, кто: ')
 for i in data.values():
     print(i)
 print('?')
+sleep(1)
 
 print('Введите вопрос, например:') 
 print('Кто ест планктон?')
 question = input()
+sleep(1)
 
 #Кто ходит на лекции?
 
 found = False
+'''
 for subj, actions in data.items():
     for action in actions:
         if action in question:
             print(subj)
             found = True
-
+'''
 for subj in data.keys():
     for action in data.get(subj):
         if action in question:
