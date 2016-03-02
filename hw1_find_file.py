@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# student: Dmitry Makarov
+#
+#  2016_python.py
+#  
+#  Student Dmitry Makarov <vensder@gmail.com>
 
 import os # import of os module
 
