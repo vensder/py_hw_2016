@@ -5,43 +5,32 @@
 #  
 #  Student Dmitry Makarov <vensder@gmail.com>
 
-#5.3. в задании с pickle тоже try-except
 #import pickle
 import csv
 
-# Базовый словарь, на случай, если нет файла
-en_ru_dump = {
-        u'key': {u'ключ',u'клавиша',u'код',},
-        u'space': {u'пространство',u'космос',u'пробел',},
-        u'escape': {u'побег',u'выход',u'спасение'},
-        u'shift': {u'сдвиг',u'изменение',u'переключение'},
-        }
+# Базовый словарь англ. языка, на случай, если нет файла
+# Имеет структуру словаря, значения в котором - множества(sets) переводов.
+en_ru_base = {
+            u'key': {u'ключ',u'клавиша',u'код',},
+            u'space': {u'пространство',u'космос',u'пробел',},
+            u'escape': {u'побег',u'выход',u'спасение',},
+            u'shift': {u'сдвиг',u'изменение',u'переключение'},
+}
 
-en_ru_new = None
+en_ru_new = {} # пустой словарь, куда загрузим файл, если он есть
 
 try: # Пробуем открыть файл
-    reader = csv.reader(open('dict.csv', 'r'))
-    en_ru_new = dict(reader)
-    print(en_ru_new)
-#    print(mydict)
+    with open('dict.csv') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            en_ru_new[row['key']] = eval(row['value']) # eval преобразует строку str типа '{1,2,3}' в set {1,2,3}
 except FileNotFoundError: # если файл не найден, скидываем в него наш словарь
-    writer = csv.writer(open('dict.csv', 'w'), delimiter=';',)
-    for key, value in en_ru_dump.items():
-        writer.writerow([key, value])
-
-#quit()
-
-'''
-# Загрузка словаря из файла
-try:
-    with open('en_ru.p','rb') as f:
-        en_ru_new = pickle.load(f)
-# Если файл не найден, создаем его, сбрасывая базовый словарь
-except FileNotFoundError:
-    with open('en_ru.p','wb') as f:
-        pickle.dump(en_ru_dump,f)
-        en_ru_new = en_ru_dump # присваеваем содержимое базового рабочему
-'''
+    with open('dict.csv','w') as csvfile:
+        writer = csv.DictWriter(csvfile, fieldnames=['key','value']) # пользуемся классом DictWriter, задаем поля
+        writer.writeheader() # пишем названия полей
+        for key in en_ru_base.keys(): # заполняем ключами и значениями (value = str(set))
+            writer.writerow({'key': key, 'value': en_ru_base.get(key)})
+        en_ru_new = en_ru_base # присваеваем содержимое базового рабочему
 
 # Функция запроса продолжения/прекращения общения
 def choice():
