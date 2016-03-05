@@ -69,9 +69,9 @@ def insert_horizontal(decks_number):
             area[y+1][x-1] = 2
         if x < (dimensions - decks_number-1):
             area[y+1][x+decks_number] = 2
-                
+
 # convert field with 0,1,2 to ascii (---xxx--)
-def convert_to_ascii_gen(area): # use generator expression!
+def convert_to_ascii(area): # use generator expression!
     return [['x' if area[i][j] == 1 else '-' for i in range(dimensions)] for j in range(dimensions)]
 
 # insert ship with 4 decks
@@ -91,8 +91,8 @@ for i in range(3):
 for i in range(4):
     insert_horizontal(1)
 
-area = convert_to_ascii_gen(area)
-print_area(area)
+# convert to ascii (area)
+print_area(convert_to_ascii(area))
 
 print('\n-------------------\n')
 print(u'Iterations: ', iterations)
