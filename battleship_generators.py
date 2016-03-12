@@ -13,8 +13,8 @@ iterations = 0
 
 # Print battle field matrix
 def print_area(area):
-    for r in area:
-        print(' '.join(r))
+    for count, row in enumerate(area,1):
+        print('%2d' % (count), (' '.join(row)), '%1d' % (count))
 
 # transpose the matrix via generator expression
 def transpon_matrix(matrix):
@@ -91,9 +91,17 @@ for i in range(3):
 for i in range(4):
     insert_horizontal(1)
 
+# horizontal coordinates
+print('   a b c d e f g h i j')
+#print('   ___________________')
 # convert to ascii (area)
 print_area(convert_to_ascii(area))
+print('   a b c d e f g h i j')
 
 print('\n-------------------\n')
 print(u'Iterations: ', iterations)
 
+# programms and opponents shots store in the sets of tuples: {(x,y)}
+# each next shot write to the file (rewrite file with coord x,y)
+# another ex. of app rereads the file (opened with reading). If coords changed, read it and store,
+# and write own shot to own file (opened with rewriting)
