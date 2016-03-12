@@ -16,7 +16,7 @@ xxx-------
 
 from random import randint
 
-dimensions = 10 # dimensions of the field
+dimensions = 7 # dimensions of the field
 
 # generating area dim x dim (10 x 10)
 area = [[0 for i in range(dimensions)] for i in range(dimensions)]
