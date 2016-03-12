@@ -11,24 +11,24 @@ area = [[0 for i in range(dimensions)] for i in range(dimensions)]
 # Count quantity of random generation x,y
 iterations = 0
 
-# Print battle field matrix
 def print_area(area):
+    ''''Print battle field matrix with vertical coordinates'''
     for count, row in enumerate(area,1):
         print('%2d' % (count), (' '.join(row)), '%1d' % (count))
 
-# transpose the matrix via generator expression
 def transpon_matrix(matrix):
+    '''Transpose the matrix via generator expression'''
     return [[matrix[i][j] for i in range(dimensions)] for j in range(dimensions)]
 
-# call the transpon_matrix() with 50% of probability
 def transpon_random(matrix):
-    if randint(0,1) == 1:
+    '''Call the transpon_matrix() with 50% of probability'''
+    if randint(0,1):
         return transpon_matrix(matrix)
     else:
         return matrix
 
-# Generate x,y coordinates for ship with decks = decks_number
 def generate_xy(decks_number):
+    '''Generate x,y coordinates for ship with decks = decks_number'''
     x = randint(0, dimensions - decks_number)
     y = randint(0, dimensions - 1)
     # Count quantity of random generation x,y
@@ -36,8 +36,8 @@ def generate_xy(decks_number):
     iterations += 1
     return(x,y)
     
-# insert horizontal ship in x,y, if there is 0
 def insert_horizontal(decks_number):
+    '''Insert horizontal ship in x,y, if there is 0'''
     x,y = generate_xy(decks_number)
     # Regenerate x,y while we would not find the free area for ship
     while sum(area[y][x:x+decks_number]) != 0:
@@ -70,8 +70,8 @@ def insert_horizontal(decks_number):
         if x < (dimensions - decks_number-1):
             area[y+1][x+decks_number] = 2
 
-# convert field with 0,1,2 to ascii (---xxx--)
-def convert_to_ascii(area): # use generator expression!
+def convert_to_ascii(area): # use generator expression
+    '''Convert field with 0,1,2 to ascii (---xxx--)'''
     return [['x' if area[i][j] == 1 else '-' for i in range(dimensions)] for j in range(dimensions)]
 
 # insert ship with 4 decks
