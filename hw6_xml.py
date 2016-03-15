@@ -5,26 +5,37 @@
 #  
 #  Student Dmitry Makarov <vensder@gmail.com>
 
-import json
+import xml
 
 # Базовый словарь, на случай, если нет файла
-en_ru_base = {
-        'key': 'ключ',
-        'space': 'пространство',
-        'escape': 'побег',
-        'shift': 'сдвиг',
-        }
+xml = '''<?xml version="1.0"?>
 
-en_ru_new = None
+<data>
 
-try: # Загрузка словаря из файла
-    js_from_file = json.load(open('jsonfile.json')) # это пока json-строка
-    en_ru_new = json.loads(js_from_file) # делаем из json-string dict
-except FileNotFoundError: # Если файл не найден, создаем его, сбрасывая базовый словарь
-    js = json.dumps(en_ru_base, ensure_ascii=False) # convert dict to json
-    json.dump(js, open('jsonfile.json', 'w'), ensure_ascii=False)
-    en_ru_new = en_ru_base # присваеваем содержимое базового рабочему
-    
+    <key>
+        <ru>ключ</ru>
+    </key>
+
+    <space>
+        <ru>пространство</ru>
+    </space>
+
+    <escape>
+        <ru>побег</ru>
+    </escape>
+
+    <shift>
+        <ru>сдвиг</ru>
+    </shift>
+
+</data>'''
+
+import xml.etree.ElementTree as ET
+root = ET.fromstring(xml)
+
+#for child in root:
+#    print(child.tag, ':', child.find('ru').text)
+   
 def choice():
     '''Функция запроса продолжения/прекращения общения'''
     choice = input(u'Да: Enter, 1, Y, y / Нет - любая другая клавиша\n')
@@ -41,16 +52,15 @@ def interact():
     '''Функция интерактивного общения со словарем'''
     # Поиск по ключу
     print(u'Чтобы узнать перевод слов:')
-    for k in en_ru_new.keys():
-        print(u'\t',k)
+    for child in root:
+        print(child.tag)
     print(u'введите любое из них:')
     eng_word = input()
 
     # Выдача перевода по ключу
-    if eng_word in en_ru_new.keys():
-        print(eng_word + ':', (en_ru_new.get(eng_word)))
-    else:
-        print(u'Слова', eng_word, u'нет в словаре')
+    for child in root:
+        if child.tag == eng_word:
+            print(child.find('ru').text)
 
     print(u"Хотите узнать перевод другого слова?")
     if choice() == u"yes":
