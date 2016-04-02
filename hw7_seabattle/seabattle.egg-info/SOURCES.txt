@@ -1,0 +1,8 @@
+README.txt
+setup.py
+seabattle/__init__.py
+seabattle/seabattle.py
+seabattle.egg-info/PKG-INFO
+seabattle.egg-info/SOURCES.txt
+seabattle.egg-info/dependency_links.txt
+seabattle.egg-info/top_level.txt
