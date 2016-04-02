@@ -16,6 +16,7 @@ class Point:
         self.x = x
         self.y = y
 
+
 class Shape:
     '''
     Базовый класс "фигура"
